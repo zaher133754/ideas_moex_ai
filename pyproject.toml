@@ -1,0 +1,31 @@
+[project]
+name = "scout-trading"
+version = "0.1.0"
+description = "Поиск инвестиционных идей через Codex CLI и Telegram"
+requires-python = ">=3.12"
+dependencies = ["httpx>=0.28,<0.29", "pydantic>=2.11,<3", "python-dotenv>=1.1,<2", "python-telegram-bot>=22.8,<23", "tzdata>=2025.2"]
+
+[dependency-groups]
+dev = ["pytest>=8.4,<10", "pytest-asyncio>=1,<2", "ruff>=0.12"]
+
+[project.scripts]
+scout = "scout.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["scout"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
